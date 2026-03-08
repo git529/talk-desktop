@@ -208,7 +208,11 @@ module.exports = {
 		// https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/LaunchServicesKeys.html#//apple_ref/doc/uid/TP40009250-SW8
 		appCategoryType: 'public.app-category.business',
 		extendInfo: path.join(__dirname, './resources/macos/entitlements.plist'),
-		osxSign: hasMacosSign && {},
+		osxSign: hasMacosSign ? {} : {
+			// Ad-hoc sign with correct identifier when no Apple credentials
+			identity: '-',
+			identityValidation: false,
+		},
 		osxNotarize: hasMacosSign && {
 			appleId: process.env.APPLE_ID,
 			appleIdPassword: process.env.APPLE_ID_PASSWORD,
