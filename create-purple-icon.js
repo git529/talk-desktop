@@ -109,7 +109,8 @@ def convert_blue_to_purple(input_path, output_path):
     # Convert to HSV
     hsv = rgb_to_hsv(rgb)
     
-    # Shift hue from blue (around 0.55-0.7) to purple (around 0.75-0.85)
+    # Target purple: #7C3AED (124, 58, 237)
+    # This is approximately hue 0.69 (250 degrees)
     # Only modify pixels that are somewhat blue
     hue = hsv[..., 0]
     saturation = hsv[..., 1]
@@ -117,8 +118,8 @@ def convert_blue_to_purple(input_path, output_path):
     # Detect blue-ish pixels (hue between 0.5 and 0.7, with some saturation)
     blue_mask = (hue > 0.5) & (hue < 0.7) & (saturation > 0.3)
     
-    # Shift blue to purple (shift by about 0.2 in hue)
-    hsv[blue_mask, 0] = (hsv[blue_mask, 0] - 0.35) % 1.0
+    # Set to purple hue (250 degrees = 0.694 in 0-1 range)
+    hsv[blue_mask, 0] = 0.694
     
     # Convert back to RGB
     rgb_new = hsv_to_rgb(hsv)
