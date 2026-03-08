@@ -1,8 +1,8 @@
 {
   "private": true,
   "name": "talk-desktop",
-  "productName": "Nextcloud Talk",
-  "desktopName": "com.nextcloud.talk.desktop",
+  "productName": "Nextcloud Talk Personal",
+  "desktopName": "com.nextcloud.talk.desktop.personal",
   "version": "2.1.1",
   "bugs": {
     "url": "https://github.com/nextcloud/talk-desktop/issues",
